@@ -1,0 +1,13 @@
+.DS_Store
+out
+target
+build
+junit-report
+.classpath
+.settings
+.setting
+.project
+.idea
+*.iml
+/target/
+
