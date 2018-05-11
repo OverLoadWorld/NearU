@@ -9,9 +9,9 @@ public class User {
 
     private String tel;
 
-    private Integer type;
+    private Byte type;
 
-    private Integer status;
+    private Byte status;
 
     private Long addedTime;
 
@@ -49,19 +49,19 @@ public class User {
         this.tel = tel == null ? null : tel.trim();
     }
 
-    public Integer getType() {
+    public Byte getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(Byte type) {
         this.type = type;
     }
 
-    public Integer getStatus() {
+    public Byte getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(Byte status) {
         this.status = status;
     }
 
