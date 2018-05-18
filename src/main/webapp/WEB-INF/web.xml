@@ -3,7 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-<!--    <listener>
+    <!-- spring配置文件开始 -->
+    <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
@@ -11,6 +12,40 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/spring/app-context.xml</param-value>
     </context-param>
+
+    <listener><!-- Spring监听HTTP请求事件 -->
+        <!-- 使spring支持request与session的scope,如: -->
+        <!-- <bean id="loginAction" class="com.foo.LoginAction" scope="request"/> -->
+        <!-- 使用： -->
+        <!-- 1、注解获取：@Autowired HttpServletRequest request; -->
+        <!-- 2、java代码：HttpServletRequest request =
+        ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest(); -->
+        <!-- 3、直接在参数中传递：public String sayHi(HttpServletRequest request) -->
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+    <listener><!-- Spring 刷新Introspector防止内存泄露 -->
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>false</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- spring配置文件结束 -->
+
+    <!-- spring mvc配置开始 -->
 
     <servlet>
         <servlet-name>app</servlet-name>
@@ -25,5 +60,19 @@
     <servlet-mapping>
         <servlet-name>app</servlet-name>
         <url-pattern>/app/*</url-pattern>
-    </servlet-mapping>-->
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/spring-mvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 </web-app>

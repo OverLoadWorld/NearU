@@ -10,4 +10,4 @@ junit-report
 .idea
 *.iml
 /target/
-
+logs/

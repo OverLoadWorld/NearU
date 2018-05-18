@@ -29,10 +29,10 @@
         </commentGenerator>
         <!-- 数据库连接 -->
         <jdbcConnection
-                driverClass="${spring.datasource.driver-class-name}"
-                connectionURL="${spring.datasource.url}"
-                userId="${spring.datasource.username}"
-                password="${spring.datasource.password}">
+                driverClass="${datasource.driver-class-name}"
+                connectionURL="${datasource.url}"
+                userId="${datasource.username}"
+                password="${datasource.password}">
         </jdbcConnection>
         <!-- 指定生成的类型为java类型，避免数据库中number等类型字段 -->
         <javaTypeResolver>
